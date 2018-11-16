@@ -35,16 +35,12 @@ class App extends Component {
   async componentDidMount() {
     const selectedNetwork = await getNetwork();
     const { providerObj, pubKey } = await provider();
-    this.setState({ network: selectedNetwork, provider: providerObj, pubKey }, ()=> {
-      console.log(this.state.network);
-    });
+    this.setState({ network: selectedNetwork, provider: providerObj, pubKey }, ()=> {});
   }
 
   processRequest = async ({amount}) => {
     const { provider, pubKey, network } = this.state;
-    this.setState({ amount, dataProcessed: true }, () => {
-      console.log({pubKey});
-    });
+    this.setState({ amount, dataProcessed: true }, () => {});
     const contract = await executeDeposit(provider, amount, network, pubKey);
     const goerliContract = await instantiateGoerliContract();
     
@@ -80,10 +76,25 @@ class App extends Component {
     return eventObject;
   };
 
+  resetData = () => {
+    this.setState({ 
+      dataProcessed: false,
+      eventRecipient: null, 
+      eventValue: null, 
+      eventToChain: null, 
+      eventEvent: null,
+      goerliRecipient: null,
+      goerliValue: null,
+      goerliFromChain: null,
+      amount: 0,
+     });
+  };
+
   render() {
     const { dataProcessed, error, network } = this.state;
     const depositEventTriggered = this.state.eventRecipient !== null;
     const withdrawEventTriggered = this.state.goerliRecipient !== null;    
+    const eventsDisplayed = depositEventTriggered && withdrawEventTriggered;
     return (
       <Layout className="layoutContainer">
         <NavigationHeader />
@@ -96,9 +107,9 @@ class App extends Component {
             : null
           }
           <div className="formDivContainer">
-            <ContractForm activeNetwork={network} extractData={this.processRequest}/>
+            <ContractForm activeNetwork={network} reset={this.resetData} extractData={this.processRequest} eventsComplete={eventsDisplayed}/>
           </div>
-          <div>
+          <div style={{margin: '0 auto' }}>
             <ProgressElement activated={dataProcessed} depositRecieved={depositEventTriggered} withdrawRecieved={withdrawEventTriggered} />           
           </div>
           <div>
@@ -107,7 +118,7 @@ class App extends Component {
             }
           </div>
         </Content>
-        <Footer className="footer"> Goerli </Footer>
+        <Footer className="footer"> G&ouml;rli </Footer>
       </Layout>
     );
   }
