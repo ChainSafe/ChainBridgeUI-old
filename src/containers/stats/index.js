@@ -1,13 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import 'antd/dist/antd.css'
+import NavigationHeader from '../layout/header/Header';
+import SiderMenu from '../layout/grid/SiderMenu';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+
+const { SubMenu } = Menu;
+const { Header, Content, Sider, Footer } = Layout;
 
 const StatsPage = () => (
-  <div>
-    <div>
-      <h3>Stats</h3>
-      {/* <Link className="btn btn-primary" to="/dashboard_default">Back Home</Link> */}
-    </div>
-  </div>
+    <Layout>
+        <NavigationHeader />
+        <Layout>
+          <SiderMenu />
+          <Layout style={{ padding: '0 24px 24px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Network</Breadcrumb.Item>
+                <Breadcrumb.Item>Stats</Breadcrumb.Item>
+            </Breadcrumb>
+            <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+            </Content>
+          </Layout>
+        </Layout>
+      </Layout>
 );
 
 export default StatsPage;
