@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css'
 import './App.css';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { BrowserRouter } from 'react-router-dom';
 import NavigationHeader from '../layout/header/Header';
 import GridLayout from '../layout/grid/GridLayout';
+import Router from './Router';
 // import ContractForm from '../forms/ContractForm';
 // import TxSummary from './TxSummary';
 // import Error from './Error';
@@ -58,7 +60,9 @@ class App extends Component {
   render() {
     const { dataProcessed, error, network } = this.state;
     return (
-      <GridLayout />
+      <BrowserRouter>
+      <Router />
+      </BrowserRouter>
     //   <Layout>
     //     <NavigationHeader />
     //   <Layout>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const WikiPage = () => (
+const BridgePage = () => (
   <div>
     <div>
-      <h3>Wiki</h3>
+      <h3>Bridge</h3>
       {/* <Link className="btn btn-primary" to="/dashboard_default">Back Home</Link> */}
     </div>
   </div>
 );
 
-export default WikiPage;
+export default BridgePage;
