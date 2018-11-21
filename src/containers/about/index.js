@@ -9,7 +9,7 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;
 
 const AboutPage = () => (
-  <Layout>
+  <Layout style={layoutStyle}>
   <NavigationHeader />
   <Layout>
     <SiderMenu />
@@ -24,5 +24,10 @@ const AboutPage = () => (
   </Layout>
 </Layout>
 );
+
+const layoutStyle = {
+  flex: 1, 
+  height: '100vh'
+};
 
 export default AboutPage;
